@@ -2,8 +2,12 @@
 import Section from "./templates/Section.astro";
 ---
 
-<Section title="Modelo X" subtitle="Explorar inventario" color="black">
-
+<Section
+  id="model-x"
+  title="Modelo X"
+  subtitle="Explorar inventario"
+  color="black"
+>
   <div class="flex flex-row gap-x-7 w-full justify-center" slot="footer">
     <a
       class="text-white text-base py-[6px] px-9 rounded inline-block bg-gray-700
@@ -22,5 +26,4 @@ import Section from "./templates/Section.astro";
     src="/images/model-x.avif"
     slot="media-background"
   />
-
 </Section>

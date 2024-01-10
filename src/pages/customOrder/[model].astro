@@ -1,0 +1,64 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Logo from "../../components/Logo.astro";
+
+export function getStaticPaths() {
+    return [{ params: { model: "model-s" } }, { params: { model: "model-3" } }];
+}
+
+const { model } = Astro.params;
+---
+
+<Layout title="Pedido persolanizado">
+    <header class="pt-2 pl-8 w-full">
+        <Logo />
+    </header>
+    <main class="flex flex-row px-8 border-2 border-red-700">
+        <section class="relative h-52 w-96 overflow-hidden">
+            <div
+                id="carousel"
+                class="flex flex-row transition-transform w-full h-full"
+            >
+                <div class="min-w-full h-full bg-lime-600 snap-center"></div>
+                <div class="min-w-full h-full bg-slate-600 snap-center"></div>
+                <div class="min-w-full h-full bg-red-600 snap-center"></div>
+            </div>
+            <button
+                id="prev-button"
+                class="absolute top-0 start-0 z-30 flex items-center h-full pl-2"
+                >Prev</button
+            >
+
+            <button
+                id="next-button"
+                class="absolute top-0 end-0 z-30 flex items-center h-full pr-2"
+                >Next</button
+            >
+        </section>
+        <section></section>
+    </main>
+</Layout>
+
+<script>
+    const carousel = document.querySelector("#carousel") as HTMLElement;
+    const prevButton = document.querySelector("#prev-button");
+    const nextButton = document.querySelector("#next-button");
+
+    let slideIndex = 0;
+
+    nextButton?.addEventListener("click", () => {
+        if (slideIndex < carousel?.children.length - 1) {
+            slideIndex = (slideIndex + 1) % carousel?.children.length;
+            carousel.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+    });
+
+    prevButton?.addEventListener("click", () => {
+        if (slideIndex > 0) {
+            slideIndex =
+                (slideIndex - 1 + carousel?.children.length) %
+                carousel?.children.length;
+            carousel.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+    });
+</script>

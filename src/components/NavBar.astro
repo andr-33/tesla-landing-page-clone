@@ -14,12 +14,36 @@ import Logo from "./Logo.astro";
     <ul
       class="flex text-base font-normal text-current [&>li]:px-4 transition-colors"
     >
-      <li><a class="cursor-pointer nav-buton" data-id-section="model-s">Modelo S</a></li>
-      <li><a class="cursor-pointer nav-buton" data-id-section="model-3">Modelo 3</a></li>
-      <li><a href="#">Modelo X</a></li>
-      <li><a href="#">Modelo Y</a></li>
-      <li><a href="#">Powerwall</a></li>
-      <li><a href="#">Carga</a></li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-s"
+          >Modelo S</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-3"
+          >Modelo 3</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-x"
+          >Modelo X</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-y"
+          >Modelo Y</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="powerwall"
+          >Powerwall</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="accessories"
+          >Carga</a
+        >
+      </li>
     </ul>
   </nav>
 
@@ -27,10 +51,10 @@ import Logo from "./Logo.astro";
     <ul
       class="flex text-base font-normal text-current [&>li]:px-4 transition-colors"
     >
-      <li><a href="">Soporte</a></li>
-      <li><a href="">Tienda</a></li>
-      <li><a href="">Cuenta</a></li>
-      <li><a href="">Menú</a></li>
+      <li><a href="#">Soporte</a></li>
+      <li><a href="#">Tienda</a></li>
+      <li><a href="#">Cuenta</a></li>
+      <li><a href="#">Menú</a></li>
     </ul>
   </nav>
 
@@ -42,13 +66,13 @@ import Logo from "./Logo.astro";
 </header>
 
 <script>
-  const navButtons = document.querySelectorAll(".nav-buton");
-  navButtons.forEach(navButton =>{
-    navButton.addEventListener("click",()=>{
-      const sectionId = navButton.getAttribute("data-id-section"); 
+  const navButtons = document.querySelectorAll(".nav-button");
+  navButtons.forEach((navButton) => {
+    navButton.addEventListener("click", () => {
+      const sectionId = navButton.getAttribute("data-id-section");
       const sectionSelected = document.querySelector(`#${sectionId}`);
 
-      sectionSelected.scrollIntoView({behavior: "smooth"});
+      sectionSelected.scrollIntoView({ behavior: "smooth" });
     });
   });
 </script>
