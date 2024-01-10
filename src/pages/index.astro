@@ -2,13 +2,23 @@
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/NavBar.astro";
 import HeroSection from "../components/HeroSection.astro";
+import ModelSSection from "../components/ModelSSection.astro";
+import Model3Section from "../components/Model3Section.astro";
+import ModelXSection from "../components/ModelXSection.astro";
 import ModelYSection from "../components/ModelYSection.astro";
+import PowerwallSection from "../components/PowerwallSection.astro";
+import AccessoriesSection from "../components/AccessoriesSection.astro";
 ---
 
 <Layout title="Tesla">
   <NavBar />
   <main class="relative w-full h-screen overflow-y-auto snap-y snap-mandatory">
     <HeroSection />
+    <ModelSSection />
+    <Model3Section />
+    <ModelXSection />
     <ModelYSection />
+    <PowerwallSection />
+    <AccessoriesSection />
   </main>
 </Layout>
