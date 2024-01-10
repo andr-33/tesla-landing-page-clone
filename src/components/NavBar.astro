@@ -14,8 +14,8 @@ import Logo from "./Logo.astro";
     <ul
       class="flex text-base font-normal text-current [&>li]:px-4 transition-colors"
     >
-      <li><a href="#">Modelo S</a></li>
-      <li><a href="#">Modelo 3</a></li>
+      <li><a class="cursor-pointer nav-buton" data-id-section="model-s">Modelo S</a></li>
+      <li><a class="cursor-pointer nav-buton" data-id-section="model-3">Modelo 3</a></li>
       <li><a href="#">Modelo X</a></li>
       <li><a href="#">Modelo Y</a></li>
       <li><a href="#">Powerwall</a></li>
@@ -40,6 +40,18 @@ import Logo from "./Logo.astro";
   >
   </div>
 </header>
+
+<script>
+  const navButtons = document.querySelectorAll(".nav-buton");
+  navButtons.forEach(navButton =>{
+    navButton.addEventListener("click",()=>{
+      const sectionId = navButton.getAttribute("data-id-section"); 
+      const sectionSelected = document.querySelector(`#${sectionId}`);
+
+      sectionSelected.scrollIntoView({behavior: "smooth"});
+    });
+  });
+</script>
 
 <script>
   const navBarItems = document.querySelectorAll("#nav-bar li");
