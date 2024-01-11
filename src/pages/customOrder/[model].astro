@@ -1,7 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Logo from "../../components/Logo.astro";
-
+import Layout from "../../layouts/Layout.astro";    
+import {Icon} from "astro-icon/components";
 export function getStaticPaths() {
     return [{ params: { model: "model-s" } }, { params: { model: "model-3" } }];
 }
@@ -9,33 +8,76 @@ export function getStaticPaths() {
 const { model } = Astro.params;
 ---
 
-<Layout title="Pedido persolanizado">
+<Layout title="Pedido persolanizado" style="overflow-hidden">
     <header class="pt-2 pl-8 w-full">
-        <Logo />
+        <Icon class="w-32 h-6 transition-colors nav-button cursor-pointer" name="logo"/>
     </header>
-    <main class="flex flex-row px-8 border-2 border-red-700">
-        <section class="relative h-52 w-96 overflow-hidden">
+    <main class="w-full h-screen flex flex-row px-8">
+        <section class="w-4/5 relative overflow-hidden">
             <div
                 id="carousel"
                 class="flex flex-row transition-transform w-full h-full"
             >
-                <div class="min-w-full h-full bg-lime-600 snap-center"></div>
-                <div class="min-w-full h-full bg-slate-600 snap-center"></div>
-                <div class="min-w-full h-full bg-red-600 snap-center"></div>
+                <div class="min-w-full h-full snap-center">
+                    <img
+                        class="object-center object-cover w-full h-full" 
+                        src="/images/orderViews/modelS/model-s-front.jpeg"/>
+                </div>
+                <div class="min-w-full h-full snap-center">
+                    <img
+                        class="object-center object-cover w-full h-full" 
+                        src="/images/orderViews/modelS/model-s-side.jpeg"/>
+                </div>
+                <div class="min-w-full h-full snap-center">
+                    <img
+                        class="object-center object-cover w-full h-full" 
+                        src="/images/orderViews/modelS/model-s-front.jpeg"/>
+                </div>
+                <div class="min-w-full h-full snap-center">
+                    <img
+                        class="object-center object-cover w-full h-full" 
+                        src="/images/orderViews/modelS/model-s-wheel.jpeg"/>
+                </div>
             </div>
-            <button
-                id="prev-button"
-                class="absolute top-0 start-0 z-30 flex items-center h-full pl-2"
-                >Prev</button
+            <div
+                class="absolute top-0 start-0 z-30 flex items-center h-full"
+                >
+                    <Icon 
+                        id="prev-button" 
+                        name="bx:chevron-left" 
+                        class="w-8 h-8 cursor-pointer"/>
+                </div
             >
 
-            <button
-                id="next-button"
-                class="absolute top-0 end-0 z-30 flex items-center h-full pr-2"
-                >Next</button
+            <div
+                class="absolute top-0 end-0 z-30 flex items-center h-full"
+                >
+                    <Icon 
+                        id="next-button" 
+                        name="bx:chevron-right" 
+                        class="w-8 h-8 cursor-pointer"/>
+                </div
             >
         </section>
-        <section></section>
+        <section class="w-1/5 border border-red-600">
+            <h1 class="text-center text-4xl pt-10 font-medium">Modelo S</h1>
+            <p class="text-center text-sm pt-2">Entrega estimada: feb. – mar. 2024</p>
+
+            <div class="w-full flex flex-row justify-around pt-12">
+                <div class="text-center">
+                    <p class="text-3xl font-medium">634<span class="text-sm">km</span></p>
+                    <p class="text-sm text-gray-500 font-light pt-2">Autonomía <br/>(WLTP)</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-medium">250<span class="text-sm">km/h</span></p>
+                    <p class="text-sm text-gray-500 font-light pt-2">Velocidad máxima</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-semibold">3,2<span class="text-sm">s</span></p>
+                    <p class="text-sm text-gray-500 font-light pt-2">0-100 km/h</p>
+                </div>
+            </div>
+        </section>
     </main>
 </Layout>
 
