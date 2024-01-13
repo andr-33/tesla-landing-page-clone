@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ItemCarousel from "../../components/ItemCarousel.astro";
 import Feature from "../../components/Feature.astro";
+import modelsData from "../../data/modelsDataSet.json";
 
 import { Icon } from "astro-icon/components";
 export function getStaticPaths() {
@@ -9,6 +10,7 @@ export function getStaticPaths() {
 }
 
 const { model } = Astro.params;
+const modelData = modelsData[model];
 ---
 
 <Layout title="Pedido persolanizado" style="overflow-hidden">
@@ -24,67 +26,92 @@ const { model } = Astro.params;
         id="carousel"
         class="flex flex-row transition-transform w-full h-full"
       >
-        <ItemCarousel imagePath="/images/orderViews/modelS/model-s-front.jpeg" />
-        <ItemCarousel imagePath="/images/orderViews/modelS/model-s-side.jpeg" />
-        <ItemCarousel imagePath="/images/orderViews/modelS/model-s-back.jpeg" />
-        <ItemCarousel imagePath="/images/orderViews/modelS/model-s-wheel.jpeg" />
+        <ItemCarousel
+          imagePath={`/images/orderViews/${model}/${model}-front.jpeg`}
+        />
+        <ItemCarousel
+          imagePath={`/images/orderViews/${model}/${model}-side.jpeg`}
+        />
+        <ItemCarousel
+          imagePath={`/images/orderViews/${model}/${model}-back.jpeg`}
+        />
+        <ItemCarousel
+          imagePath={`/images/orderViews/${model}/${model}-wheel.jpeg`}
+        />
       </div>
       <div class="absolute top-0 start-0 z-30 flex items-center h-full">
         <Icon
           id="prev-button"
           name="bx:chevron-left"
-          class="w-8 h-8 cursor-pointer"
+          class="w-8 h-8 cursor-pointer text-gray-500 invisible hover:scale-125 hover:text-black transition ease-in duration-200"
         />
       </div>
 
-      <div class="absolute top-0 end-20 z-30 flex items-center h-full">
+      <div class="absolute top-0 end-10 z-30 flex items-center h-full">
         <Icon
           id="next-button"
           name="bx:chevron-right"
-          class="w-8 h-8 cursor-pointer"
+          class="w-8 h-8 cursor-pointer text-gray-500 hover:scale-125 hover:text-black transition ease-in duration-200"
         />
       </div>
     </section>
     <section class="w-96">
-      <h1 class="text-center text-4xl pt-10 font-medium">Modelo S</h1>
-      <p class="text-center text-sm pt-2">Entrega estimada: feb. – mar. 2024</p>
+      <h1 class="text-center text-4xl pt-10 font-medium">{modelData.title}</h1>
+      <p class="text-center text-sm pt-2">{modelData.estimatedDelivery}</p>
 
       <section class="w-full flex flex-row justify-around pt-12 px-5">
         <Feature value="634" unit="Km">
-            <p class="text-sm text-gray-500 font-light pt-2" slot="description">
-                Autonomía <br/>
-                <span class="underline underline-offset-4">(WLTP)</span>
-            </p>
+          <p class="text-sm text-gray-500 font-light pt-2" slot="description">
+            Autonomía <br />
+            <span class="underline underline-offset-4">(WLTP)</span>
+          </p>
         </Feature>
         <Feature value="250" unit="Km/h">
-            <p class="text-sm text-gray-500 font-light pt-2" slot="description">
-                Velocidad <br/> 
-                máxima
-            </p>
+          <p class="text-sm text-gray-500 font-light pt-2" slot="description">
+            Velocidad <br />
+            máxima
+          </p>
         </Feature>
         <Feature value="3,2" unit="s">
-            <p class="text-sm text-gray-500 font-light pt-2" slot="description">0-100 km/h</p>
+          <p class="text-sm text-gray-500 font-light pt-2" slot="description">
+            0-100 km/h
+          </p>
         </Feature>
-    
       </section>
 
       <section class="pt-10 px-5">
-        <p class="text-base font-medium">Motor dual y tracción integral</p>
-        <button
-          id="basic-model-button"
-          class="w-full rounded border-[3px] border-blue-600 font-medium flex flex-row justify-between p-3 my-2 transition-all ease-linear"
-        >
-          <p class="text-base pl-1">Model S</p>
-          <p class="text-base pr-1">94.990 €</p>
-        </button>
-        <p class="text-base font-medium">Tracción integral de triple motor</p>
-        <button
-          id="plaid-model-button"
-          class="w-full rounded border text-gray-500 border-gray-500 font-light flex flex-row justify-between p-3 my-2 transition-all ease-linear"
-        >
-          <p class="text-base pl-1">Model S Plaid</p>
-          <p class="text-base pr-1">109.990 €</p>
-        </button>
+        <div class="w-full h-24">
+          <p class="text-base font-medium">{modelData.types[0].description}</p>
+          <button
+            id="basic-model-button"
+            class="w-full rounded border-[3px] border-blue-600 font-medium
+            flex flex-row justify-between p-3 my-2 transition-all ease-linear duration-100"
+          >
+            <p class="text-base pl-1">{modelData.types[0].name}</p>
+            <p class="text-base pr-1">{modelData.types[0].price} €</p>
+          </button>
+        </div>
+        <div class="w-full h-24">
+          <p class="text-base font-medium">{modelData.types[1].description}</p>
+          <button
+            id="plaid-model-button"
+            class="w-full rounded border text-gray-500 border-gray-500 font-light
+            flex flex-row justify-between p-3 my-2 transition-all ease-linear duration-100"
+          >
+            <p class="text-base pl-1">{modelData.types[1].name}</p>
+            <p class="text-base pr-1">{modelData.types[1].price} €</p>
+          </button>
+        </div>
+      </section>
+      <section class="pt-10">
+        <div class="w-full text-center">
+          <p class="text-2xl font-medium pb-2">Ordena tu {modelData.title}</p>
+          <a
+            class="text-white text-base py-[6px] px-14 bg-blue-600 rounded inline-block
+             hover:bg-blue-600/90 transition-colors font-medium"
+            href="#">Método de pago</a
+          >
+        </div>
       </section>
     </section>
   </main>
@@ -92,8 +119,8 @@ const { model } = Astro.params;
 
 <script>
   const carousel = document.querySelector("#carousel") as HTMLElement;
-  const prevButton = document.querySelector("#prev-button");
-  const nextButton = document.querySelector("#next-button");
+  const prevButton = document.querySelector("#prev-button") as HTMLElement;
+  const nextButton = document.querySelector("#next-button") as HTMLElement;
 
   let slideIndex = 0;
 
@@ -101,6 +128,17 @@ const { model } = Astro.params;
     if (slideIndex < carousel?.children.length - 1) {
       slideIndex = (slideIndex + 1) % carousel?.children.length;
       carousel.style.transform = `translateX(${-slideIndex * 100}%)`;
+
+      const visibilityPrevButton =
+        prevButton.style.getPropertyValue("visibility");
+
+      if (visibilityPrevButton !== "visible") {
+        prevButton.style.visibility = "visible";
+      }
+    }
+
+    if (slideIndex === carousel.children.length - 1) {
+      nextButton.style.visibility = "hidden";
     }
   });
 
@@ -110,6 +148,17 @@ const { model } = Astro.params;
         (slideIndex - 1 + carousel?.children.length) %
         carousel?.children.length;
       carousel.style.transform = `translateX(${-slideIndex * 100}%)`;
+
+      const visibilityNextButton =
+        nextButton.style.getPropertyValue("visibility");
+
+      if (visibilityNextButton !== "visible") {
+        nextButton.style.visibility = "visible";
+      }
+    }
+
+    if (slideIndex === 0) {
+      prevButton.style.visibility = "hidden";
     }
   });
 </script>
@@ -122,27 +171,30 @@ const { model } = Astro.params;
 </script>
 
 <script>
-    const basicModelButton =  document.querySelector("#basic-model-button") as HTMLElement;
-    const plaidModelButton =  document.querySelector("#plaid-model-button") as HTMLElement;
+  const basicModelButton = document.querySelector(
+    "#basic-model-button",
+  ) as HTMLElement;
+  const plaidModelButton = document.querySelector(
+    "#plaid-model-button",
+  ) as HTMLElement;
 
-    basicModelButton?.addEventListener("click",()=>{
-        basicModelButton.style.border = "3px solid rgb(37 99 235)";
-        basicModelButton.style.fontWeight = "500";
-        basicModelButton.style.color = "black";
+  basicModelButton?.addEventListener("click", () => {
+    basicModelButton.style.border = "3px solid rgb(37 99 235)";
+    basicModelButton.style.fontWeight = "500";
+    basicModelButton.style.color = "black";
 
-        plaidModelButton.style.border = "1px solid rgb(107 114 128)";
-        plaidModelButton.style.fontWeight = "300";
-        plaidModelButton.style.color = "rgb(107 114 128)";
+    plaidModelButton.style.border = "1px solid rgb(107 114 128)";
+    plaidModelButton.style.fontWeight = "300";
+    plaidModelButton.style.color = "rgb(107 114 128)";
+  });
 
-    });
+  plaidModelButton?.addEventListener("click", () => {
+    plaidModelButton.style.border = "3px solid rgb(37 99 235)";
+    plaidModelButton.style.fontWeight = "500";
+    plaidModelButton.style.color = "black";
 
-    plaidModelButton?.addEventListener("click",()=>{
-        plaidModelButton.style.border = "3px solid rgb(37 99 235)";
-        plaidModelButton.style.fontWeight = "500";
-        plaidModelButton.style.color = "black";
-
-        basicModelButton.style.border = "1px solid rgb(107 114 128)";
-        basicModelButton.style.fontWeight = "300";
-        basicModelButton.style.color = "rgb(107 114 128)";
-    });
+    basicModelButton.style.border = "1px solid rgb(107 114 128)";
+    basicModelButton.style.fontWeight = "300";
+    basicModelButton.style.color = "rgb(107 114 128)";
+  });
 </script>
