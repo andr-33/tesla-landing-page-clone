@@ -7,42 +7,99 @@
                 "description": "Motor dual y tracción integral",
                 "name": "Model S",
                 "price": "94.990",
-                "features": [
-                    {
-                        "value": "634",
-                        "unit": "Km"
-                    },
-                    {
-                        "value": "250",
-                        "unit": "Km/h"
-                    },
-                    {
-                        "value": "3,2",
-                        "unit": "Km"
-                    }
-                ]
+                "features": {
+                    "autonomy": "634",
+                    "maxSpeed": "250",
+                    "acceleration": "3,2"
+                }
             },
             {
                 "description": "Tracción integral de triple motor",
                 "name": "Model S Plaid",
                 "price": "109.990",
-                "features": [
-                    {
-                        "value": "600",
-                        "unit": "Km",
-                        "description": "Autonomía (WLTP)"
-                    },
-                    {
-                        "value": "322",
-                        "unit": "Km/h",
-                        "description": "Velocidad máxima"
-                    },
-                    {
-                        "value": "2,1",
-                        "unit": "Km",
-                        "description": "0-100 km/h"
-                    }
-                ]
+                "features": {
+                    "autonomy": "600",
+                    "maxSpeed": "322",
+                    "acceleration": "2,1"
+                }
+            }
+        ]
+    },
+    "model-3": {
+        "title": "Modelo 3",
+        "estimatedDelivery": "Entrega estimada: 1-4 semanas",
+        "types": [
+            {
+                "description": "Tracción trasera",
+                "name": "Model 3",
+                "price": "39.990",
+                "features": {
+                    "autonomy": "513",
+                    "maxSpeed": "201",
+                    "acceleration": "6,1"
+                }
+            },
+            {
+                "description": "Motor dual y tracción integral",
+                "name": "Model 3 Gran autonomía",
+                "price": "49.990",
+                "features": {
+                    "autonomy": "629",
+                    "maxSpeed": "201",
+                    "acceleration": "4,4"
+                }
+            }
+        ]
+    },
+    "model-y": {
+        "title": "Modelo Y",
+        "estimatedDelivery": "Entrega estimada: 2-3 semanas",
+        "types": [
+            {
+                "description": "Tracción trasera",
+                "name": "Model Y",
+                "price": "46.490",
+                "features": {
+                    "autonomy": "455",
+                    "maxSpeed": "217",
+                    "acceleration": "6,9"
+                }
+            },
+            {
+                "description": "Motor dual y tracción integral",
+                "name": "Model Y Gran autonomía",
+                "price": "53.400",
+                "features": {
+                    "autonomy": "533",
+                    "maxSpeed": "217",
+                    "acceleration": "5,0"
+                }
+            }
+        ]
+    },
+    "model-x": {
+        "title": "Modelo X",
+        "estimatedDelivery": "Entrega estimada: feb. – mar. 2024",
+        "types": [
+            {
+                "description": "Motor dual y tracción integral",
+                "name": "Model X",
+                "price": "101.990",
+                "features": {
+                    "autonomy": "576",
+                    "maxSpeed": "250",
+                    "acceleration": "3,9"
+                }
+            },
+            {
+                "description": "Tracción integral de triple motor",
+                "name": "Model X Plaid",
+                "price": "116.990",
+                "features": {
+                    "autonomy": "543",
+                    "maxSpeed": "262",
+                    "acceleration": "2,6"
+                }
             }
         ]
     }

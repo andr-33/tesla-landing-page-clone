@@ -6,14 +6,19 @@ import modelsData from "../../data/modelsDataSet.json";
 
 import { Icon } from "astro-icon/components";
 export function getStaticPaths() {
-  return [{ params: { model: "model-s" } }, { params: { model: "model-3" } }];
+  return [
+    { params: { model: "model-s" } },
+    { params: { model: "model-3" } },
+    { params: { model: "model-y" } },
+    { params: { model: "model-x" } },
+  ];
 }
 
 const { model } = Astro.params;
 const modelData = modelsData[model];
 ---
 
-<Layout title="Pedido persolanizado" style="overflow-hidden">
+<Layout title={`Elige tu ${modelData.title} | Tesla`} style="overflow-hidden">
   <header class="pt-2 pl-8 w-full">
     <Icon
       class="w-32 h-6 transition-colors nav-button cursor-pointer"
@@ -60,19 +65,19 @@ const modelData = modelsData[model];
       <p class="text-center text-sm pt-2">{modelData.estimatedDelivery}</p>
 
       <section class="w-full flex flex-row justify-around pt-12 px-5">
-        <Feature value="634" unit="Km">
+        <Feature value={modelData.types[0].features.autonomy} unit="Km">
           <p class="text-sm text-gray-500 font-light pt-2" slot="description">
             Autonomía <br />
             <span class="underline underline-offset-4">(WLTP)</span>
           </p>
         </Feature>
-        <Feature value="250" unit="Km/h">
+        <Feature value={modelData.types[0].features.maxSpeed} unit="Km/h">
           <p class="text-sm text-gray-500 font-light pt-2" slot="description">
             Velocidad <br />
             máxima
           </p>
         </Feature>
-        <Feature value="3,2" unit="s">
+        <Feature value={modelData.types[0].features.acceleration} unit="s">
           <p class="text-sm text-gray-500 font-light pt-2" slot="description">
             0-100 km/h
           </p>
