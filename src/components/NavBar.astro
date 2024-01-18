@@ -1,0 +1,124 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<header
+  id="nav-bar"
+  class="flex justify-between pt-2 px-8 w-full fixed top-0 z-20"
+>
+  <div class="flex flex-grow basis-0">
+    <Icon
+      data-id-section="home"
+      class="w-32 h-6 transition-colors nav-button cursor-pointer"
+      name="logo"
+    />
+  </div>
+
+  <nav>
+    <ul
+      class="flex text-base font-normal text-current [&>li]:px-4 transition-colors"
+    >
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-s"
+          >Modelo S</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-3"
+          >Modelo 3</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-x"
+          >Modelo X</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="model-y"
+          >Modelo Y</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="powerwall"
+          >Powerwall</a
+        >
+      </li>
+      <li>
+        <a class="cursor-pointer nav-button" data-id-section="accessories"
+          >Carga</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="flex flex-grow basis-0 justify-end">
+    <ul
+      class="flex text-base font-normal text-current [&>li]:px-4 transition-colors"
+    >
+      <li><a href="#">Soporte</a></li>
+      <li><a href="#">Tienda</a></li>
+      <li><a href="#">Cuenta</a></li>
+      <li><a href="#">Menú</a></li>
+    </ul>
+  </nav>
+
+  <div
+    id="menu-backdrop"
+    class="absolute bg-black/10 rounded transition-all duration-300 -z-10 opacity-0 left-0"
+  >
+  </div>
+</header>
+
+<script>
+  const navButtons = document.querySelectorAll(".nav-button");
+  navButtons.forEach((navButton) => {
+    navButton.addEventListener("click", () => {
+      const sectionId = navButton.getAttribute("data-id-section");
+      const sectionSelected = document.querySelector(`#${sectionId}`);
+
+      sectionSelected.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+</script>
+
+<script>
+  const navBarItems = document.querySelectorAll("#nav-bar li");
+  const menuBackdrop = document.querySelector("#menu-backdrop") as HTMLElement;
+
+  navBarItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const { left, width, height } = item.getBoundingClientRect();
+      menuBackdrop.style.translate = `${left}px`;
+      menuBackdrop.style.width = `${width}px`;
+      menuBackdrop.style.height = `${height}px`;
+      menuBackdrop.style.opacity = "1";
+    });
+
+    item.addEventListener("mouseleave", () => {
+      menuBackdrop.style.opacity = "0";
+    });
+  });
+</script>
+
+<script>
+  const navBar = document.querySelector("#nav-bar") as HTMLElement;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.9,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const { isIntersecting } = entry;
+      if (isIntersecting) {
+        const color = entry.target.getAttribute("data-header-color");
+        navBar.style.color = color;
+      }
+    });
+  }, observerOptions);
+
+  const sections = document.querySelectorAll(".section");
+  sections.forEach((section) => observer.observe(section));
+</script>

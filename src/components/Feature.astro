@@ -1,0 +1,9 @@
+---
+const {value, unit} = Astro.props;
+---
+
+<div class="text-center">
+    <p class="text-3xl font-medium">{value}<span class="text-sm">{unit}</span></p>
+    <slot name="description"/>
+    
+</div>
